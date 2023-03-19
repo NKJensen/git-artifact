@@ -48,7 +48,6 @@ function generate_base_repo() {
     cd $local_tester_repo
     touch test.txt
     git artifact add-n-push -t v1.0
-    sleep 1
     touch test2.txt
     git artifact add-n-tag -t v2.0
     git artifact push -t v2.0
@@ -122,17 +121,14 @@ testcase_header
     cd ../$local_tester_repo
     touch test$test.txt 
     git artifact add-n-push -t v${test}.0
-    sleep 1
     
     cd ../$clone_tester_repo
     git artifact fetch-co-latest -r 'v[0-9]+.[0-9]+'
     git artifact reset
-    sleep 1
 
     cd ../$local_tester_repo
     touch test$test.1.txt 
     git artifact add-n-push -t v${test}.1
-    sleep 1
 
     cd ../$clone_tester_repo
     git artifact fetch-co-latest --regex 'v[0-9]+.[0-9]+'
